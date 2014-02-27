@@ -1,0 +1,4 @@
+Powerline==beta
+ansible==1.4.4
+vboxapi==1.0
+wsgiref==0.1.2

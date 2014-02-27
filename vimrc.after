@@ -1,0 +1,14 @@
+source /Users/jimdalton/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set laststatus=2
+
+autocmd FileType php set smartindent tabstop=4 shiftwidth=4 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
+
+" Clear up the matching parenthsis colors to make less confusing!
+highlight MatchParen cterm=bold ctermfg=lightgreen ctermbg=black
+
+"folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=6       "deepest fold is 6 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
