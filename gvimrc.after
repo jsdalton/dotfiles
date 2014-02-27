@@ -1,0 +1,12 @@
+" Disable menu bar and scroll bars in MacVim
+if has("gui_running")
+  set guioptions-=T
+  set guioptions-=L
+  set guioptions-=r
+endif
+
+set background=dark
+colorscheme solarized
+
+" explicitly set number of colors to 16 so that other plugins won't use the 256 color palette.
+set t_Co=16
