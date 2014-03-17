@@ -1,3 +1,4 @@
 [submodule "janus"]
 	path = janus
 	url = https://github.com/jsdalton/janus-submodules
+  ignore = dirty
