@@ -1,8 +1,9 @@
-Fabric==1.8.2
+Fabric==1.8.3
 Powerline==beta
-ansible==1.4.4
+ansible==1.5.3
 ecdsa==0.11
 paramiko==1.13.0
 pycrypto==2.6.1
 vboxapi==1.0
+virtualenv==1.11.4
 wsgiref==0.1.2

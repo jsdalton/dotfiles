@@ -2,8 +2,13 @@
 
 current_dir := $(shell pwd)
 
-update: link-dotfiles update-janus
-	@echo "Linking files..."
+refresh: link-dotfiles
+
+update:	update-janus update-homebrew
+
+upgrade: upgrade-homebrew upgrade-pip-requirements freeze
+
+freeze: freeze-brews freeze-pip-requirements
 
 link-dotfiles: vimrc gvimrc janus config tmux bash
 
@@ -43,4 +48,32 @@ update-janus:
 	@echo "Updating janus..."
 	@cd ~/.vim && rake
 
-.PHONY: update vimrc gvimrc janus config tmux bash update-janus
+update-homebrew:
+	@echo "Updating homebrew..."
+	@brew update
+	@brew doctor
+
+upgrade-homebrew: update-homebrew
+	@echo "Upgrading homebrew..."
+	@brew upgrade
+
+install-homebrew:
+	@cat brew/FORMULAE.txt | cut -f 1 -d " " | xargs brew install
+
+freeze-brews:
+	@echo "Freezing brews..."
+	@brew list --versions > ./brew/FORMULAE.txt
+
+freeze-pip-requirements:
+	@echo "Freezing pip requirements..."
+	@pip freeze > ./pip/REQUIREMENTS.txt
+
+install-pip-requirements:
+	@echo "Installing pip requirements..."
+	@pip install -r ./pip/REQUIREMENTS.txt
+
+upgrade-pip-requirements:
+	@echo "Upgrading pip requirements..."
+	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip install --upgrade
+
+.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements
