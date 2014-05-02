@@ -2,13 +2,15 @@
 
 current_dir := $(shell pwd)
 
-refresh: link-dotfiles
+update:	update-janus update-brew refresh
 
-update:	update-janus update-homebrew
+upgrade: update upgrade-brews upgrade-pip-requirements freeze
 
-upgrade: upgrade-homebrew upgrade-pip-requirements freeze
+install: install-homebrew update-homebrew install-brews install-pip-requirements install-janus freeze
 
 freeze: freeze-brews freeze-pip-requirements
+
+refresh: link-dotfiles
 
 link-dotfiles: vimrc gvimrc janus config tmux bash
 
@@ -44,20 +46,29 @@ bash:
 	-@rm ~/.bash_profile || true
 	@ln -s $(current_dir)/bash_profile ~/.bash_profile
 
+install-janus:
+	@echo "Installing janus..."
+	@curl -Lo- https://bit.ly/janus-bootstrap | bash
+
 update-janus:
 	@echo "Updating janus..."
 	@cd ~/.vim && rake
+
+install-homebrew:
+	@echo "Installing homebrew..."
+	@ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 update-homebrew:
 	@echo "Updating homebrew..."
 	@brew update
 	@brew doctor
 
-upgrade-homebrew: update-homebrew
+upgrade-brews: update-homebrew
 	@echo "Upgrading homebrew..."
 	@brew upgrade
 
-install-homebrew:
+install-brews:
+	@echo "Installing brews..."
 	@cat brew/FORMULAE.txt | cut -f 1 -d " " | xargs brew install
 
 freeze-brews:

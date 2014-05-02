@@ -3,6 +3,7 @@ set laststatus=2
 
 autocmd FileType php set smartindent tabstop=4 shiftwidth=4 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
 
 " Clear up the matching parenthsis colors to make less confusing!
 highlight MatchParen cterm=bold ctermfg=lightgreen ctermbg=black
@@ -12,3 +13,10 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=6       "deepest fold is 6 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
+
+" Buffergator re-mapping
+nnoremap <silent> <Leader>b :BuffergatorToggle<CR>
+" open buffergator in horizontal window
+let g:buffergator_autoexpand_on_split = 0
+let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_split_size = 18
