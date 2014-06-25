@@ -12,7 +12,7 @@ freeze: freeze-brews freeze-pip-requirements
 
 refresh: link-dotfiles
 
-link-dotfiles: vimrc gvimrc janus config tmux bash
+link-dotfiles: vimrc gvimrc janus config tmux bash jrnl
 
 vimrc:
 	@echo "Linking .vimrc files..."
@@ -40,6 +40,11 @@ tmux:
 	@echo "Linking tmux files..."
 	-@rm ~/.tmux.conf || true
 	@ln -s $(current_dir)/tmux.conf ~/.tmux.conf
+
+jrnl:
+	@echo "Linking jrnl files..."
+	-@rm ~/.jrnl_config || true
+	@ln -s $(current_dir)/jrnl_config ~/.jrnl_config
 
 bash:
 	@echo "Linking bash files..."
