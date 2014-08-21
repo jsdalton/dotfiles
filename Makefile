@@ -2,7 +2,7 @@
 
 current_dir := $(shell pwd)
 
-update:	update-janus update-brew refresh
+update:	update-janus refresh
 
 upgrade: update upgrade-brews upgrade-pip-requirements freeze
 

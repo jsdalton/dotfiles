@@ -6,4 +6,8 @@ export PS1="[jsd-instrument] \w/\$ "
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
-fi 
+fi
+
+# Fun aliases
+alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
+alias vag='vagrant'
