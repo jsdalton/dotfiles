@@ -2,15 +2,15 @@
 
 current_dir := $(shell pwd)
 
-update:	update-janus refresh
+update:	refresh-submodules update-janus refresh
 
-upgrade: update upgrade-brews upgrade-pip-requirements freeze
+upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements freeze
 
-install: install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles
+install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts
 
 freeze: freeze-brews freeze-pip-requirements
 
-refresh: link-dotfiles
+refresh: refresh-submodules link-dotfiles
 
 link-dotfiles: vimrc gvimrc janus config tmux bash jrnl gitconfig
 
@@ -55,6 +55,14 @@ bash:
 	@echo "Linking bash files..."
 	-@rm ~/.bash_profile || true
 	@ln -s $(current_dir)/bash_profile ~/.bash_profile
+
+refresh-submodules:
+	@echo "Refreshing project submodules..."
+	@git submodule update --recursive --init
+
+install-powerline-fonts:
+	@echo "Installing powerline fonts"
+	@find submodules/powerline-fonts/ -type f -name "*.otf" -exec cp '{}' /Library/Fonts/ \;
 
 install-janus:
 	@echo "Installing janus..."
