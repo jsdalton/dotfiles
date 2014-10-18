@@ -6,7 +6,7 @@ update:	update-janus refresh
 
 upgrade: update upgrade-brews upgrade-pip-requirements freeze
 
-install: install-homebrew update-homebrew install-brews install-pip-requirements install-janus link-dotfiles
+install: install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles
 
 freeze: freeze-brews freeze-pip-requirements
 
@@ -57,11 +57,13 @@ install-janus:
 
 update-janus:
 	@echo "Updating janus..."
+	@git submodule foreach --recursive 'git fetch --tags'
+	@git submodule update --recursive --init
 	@cd ~/.vim && rake
 
 install-homebrew:
 	@echo "Installing homebrew..."
-	@ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+	-ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 update-homebrew:
 	@echo "Updating homebrew..."
