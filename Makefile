@@ -6,7 +6,7 @@ update:	update-janus refresh
 
 upgrade: update upgrade-brews upgrade-pip-requirements freeze
 
-install: install-homebrew update-homebrew install-brews install-pip-requirements install-janus freeze
+install: install-homebrew update-homebrew install-brews install-pip-requirements install-janus link-dotfiles
 
 freeze: freeze-brews freeze-pip-requirements
 
