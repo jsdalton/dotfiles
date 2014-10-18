@@ -2,3 +2,6 @@
 	path = janus
 	url = https://github.com/jsdalton/janus-submodules
   ignore = dirty
+[submodule "submodules/powerline-fonts"]
+	path = submodules/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git
