@@ -12,7 +12,7 @@ freeze: freeze-brews freeze-pip-requirements
 
 refresh: link-dotfiles
 
-link-dotfiles: vimrc gvimrc janus config tmux bash jrnl
+link-dotfiles: vimrc gvimrc janus config tmux bash jrnl gitconfig
 
 vimrc:
 	@echo "Linking .vimrc files..."
@@ -25,6 +25,11 @@ gvimrc:
 	@echo "Linking .gvimrc files..."
 	-@rm ~/.gvimrc.after || true
 	@ln -s $(current_dir)/gvimrc.after ~/.gvimrc.after
+
+gitconfig:
+	@echo "Linking gitconfig..."
+	-@rm -rf ~/.gitconfig || true
+	@ln -s $(current_dir)/gitconfig ~/.gitconfig
 
 janus:
 	@echo "Linking janus submodules..."
@@ -94,4 +99,4 @@ upgrade-pip-requirements:
 	@echo "Upgrading pip requirements..."
 	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip install --upgrade
 
-.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements
+.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig
