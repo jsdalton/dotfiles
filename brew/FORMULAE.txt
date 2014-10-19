@@ -1,17 +1,18 @@
-ack 2.12
-ansible 1.4.4 1.5.3
+ack 2.14
+ansible 1.7.2
+brew-cask 0.45.0
 cscope 15.8a
 gdbm 1.11
 libevent 2.0.21
-libyaml 0.1.5
-macvim 7.4-72
-mysql 5.6.16
-openssl 1.0.1f
+libyaml 0.1.6
+macvim 7.4-73_1
+mysql 5.6.21
+openssl 1.0.1j
 pkg-config 0.28
-python 2.7.6
-readline 6.2.4
-reattach-to-user-namespace 2.2
-sqlite 3.8.2 3.8.4.1
-tmux 1.8 1.9a
-vim 7.4.052 7.4.161
-wget 1.15
+python 2.7.8_2
+readline 6.3.8
+reattach-to-user-namespace 2.3
+sqlite 3.8.7
+tmux 1.9a
+vim 7.4.430_1
+wget 1.15_2
