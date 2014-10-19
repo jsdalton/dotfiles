@@ -2,7 +2,7 @@
 export PATH=/usr/local/bin:~/bin:$PATH
 
 # Set prompt
-export PS1="[jsd-instrument] \w/\$ "
+export PS1="[\h] \w/\$ "
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
