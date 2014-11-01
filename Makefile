@@ -2,7 +2,7 @@
 
 current_dir := $(shell pwd)
 
-update:	refresh-submodules update-janus refresh
+update:	update-janus refresh
 
 upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements freeze
 
@@ -68,10 +68,9 @@ install-janus:
 	@echo "Installing janus..."
 	@curl -Lo- https://bit.ly/janus-bootstrap | bash
 
-update-janus:
+update-janus: refresh-submodules
 	@echo "Updating janus..."
-	@git submodule foreach --recursive 'git fetch --tags'
-	@git submodule update --recursive --init
+	@cd ./janus && git submodule foreach --recursive 'git fetch origin master; git checkout master; git reset --hard origin/master'
 	@cd ~/.vim && rake
 
 install-homebrew:
