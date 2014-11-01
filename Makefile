@@ -4,11 +4,11 @@ current_dir := $(shell pwd)
 
 update:	update-janus refresh
 
-upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements freeze
+upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements
 
 install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts
 
-freeze: freeze-brews freeze-pip-requirements
+freeze: freeze-brews freeze-pip-requirements freeze-cask
 
 refresh: refresh-submodules link-dotfiles
 
