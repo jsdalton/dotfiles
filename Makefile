@@ -95,6 +95,19 @@ freeze-brews:
 	@echo "Freezing brews..."
 	@brew list --versions > ./brew/FORMULAE.txt
 
+update-brew-cask:
+	@echo "Updating brew cask..."
+	@brew cask update
+	@brew cask doctor
+
+install-casks:
+	@echo "Installing casks..."
+	@cat cask/CASKS.txt | xargs brew cask install
+
+freeze-casks:
+	@echo "Freezing casks..."
+	@brew cask list | tr '\t' '\n' > cask/CASKS.txt
+
 freeze-pip-requirements:
 	@echo "Freezing pip requirements..."
 	@pip freeze > ./pip/REQUIREMENTS.txt
