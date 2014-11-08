@@ -8,7 +8,7 @@ upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements
 
 install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts
 
-freeze: freeze-brews freeze-pip-requirements freeze-cask
+freeze: freeze-brews freeze-pip-requirements freeze-casks
 
 refresh: refresh-submodules link-dotfiles
 
