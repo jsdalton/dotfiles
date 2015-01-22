@@ -12,6 +12,7 @@ pkg-config 0.28
 python 2.7.8_2
 readline 6.3.8
 reattach-to-user-namespace 2.3
+ruby 2.2.0
 sqlite 3.8.7
 tmux 1.9a
 vim 7.4.430_1

@@ -1,6 +1,7 @@
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
 
+" set up defaults
 autocmd FileType php set smartindent tabstop=4 shiftwidth=4 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
@@ -24,3 +25,6 @@ let g:buffergator_split_size = 18
 
 " Make sure ag doesn't ingore files in gitignore
 let g:agprg="ag --column --unrestricted --follow"
+
+nmap <F3> O<C-R>=strftime("%a %Y-%m-%d %H:%M")<CR><Esc>j0
+imap <F3> <C-R>=strftime("%a %Y-%m-%d %H:%M")<CR>
