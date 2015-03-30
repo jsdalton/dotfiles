@@ -6,6 +6,7 @@ autocmd FileType php set smartindent tabstop=4 shiftwidth=4 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType rust setlocal shiftwidth=4 tabstop=4 expandtab
+autocmd BufRead,BufNewFile *.html.erb.deface setlocal filetype=html.eruby
 
 " Clear up the matching parenthsis colors to make less confusing!
 highlight MatchParen cterm=bold ctermfg=lightgreen ctermbg=black
