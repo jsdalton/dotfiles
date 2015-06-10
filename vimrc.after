@@ -24,8 +24,6 @@ let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_split_size = 18
 
-" Make sure ag doesn't ingore files in gitignore
-let g:agprg="ag --column --unrestricted --follow"
-
 nmap <F3> O<C-R>=strftime("%a %Y-%m-%d %H:%M")<CR><Esc>j0
 imap <F3> <C-R>=strftime("%a %Y-%m-%d %H:%M")<CR>
+
