@@ -118,6 +118,7 @@ install-pip-requirements:
 
 upgrade-pip-requirements:
 	@echo "Upgrading pip requirements..."
+	@pip install --upgrade pip
 	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip install --upgrade
 
 .PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig
