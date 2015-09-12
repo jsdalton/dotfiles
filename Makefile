@@ -58,7 +58,8 @@ bash:
 
 refresh-submodules:
 	@echo "Refreshing project submodules..."
-	@git submodule update --recursive --init
+	@git submodule sync && git submodule update --recursive --init
+	@git submodule foreach --recursive 'git fetch origin master; git checkout master; git reset --hard origin/master'
 
 install-powerline-fonts:
 	@echo "Installing powerline fonts"
@@ -70,7 +71,7 @@ install-janus:
 
 update-janus: refresh-submodules
 	@echo "Updating janus..."
-	@cd ./janus && git submodule foreach --recursive 'git fetch origin master; git checkout master; git reset --hard origin/master'
+	@cd ./janus && make update
 	@cd ~/.vim && rake
 
 install-homebrew:
