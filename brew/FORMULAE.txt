@@ -17,3 +17,5 @@ sqlite 3.8.7
 tmux 1.9a
 vim 7.4.430_1
 wget 1.15_2
+terminal-notifier 1.6.3
+node 0.12.7
