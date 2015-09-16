@@ -59,7 +59,7 @@ bash:
 refresh-submodules:
 	@echo "Refreshing project submodules..."
 	@git submodule sync && git submodule update --recursive --init
-	@git submodule foreach --recursive 'git fetch origin master; git checkout master; git reset --hard origin/master'
+	@git submodule foreach 'git fetch origin master; git checkout master; git reset --hard origin/master'
 
 install-powerline-fonts:
 	@echo "Installing powerline fonts"
