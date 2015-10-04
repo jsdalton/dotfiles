@@ -1,6 +1,6 @@
 ack 2.14
 ansible 1.7.2
-brew-cask 0.45.0
+caskroom/cask/brew-cask 0.45.0
 cscope 15.8a
 gdbm 1.11
 libevent 2.0.21

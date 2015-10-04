@@ -1,3 +1,8 @@
 google-chrome
-onepassword
+1password
 skype
+virtualbox
+vagrant
+mou
+dragondrop
+slack
