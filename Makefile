@@ -54,6 +54,7 @@ jrnl:
 bash:
 	@echo "Linking bash files..."
 	-@rm ~/.bash_profile || true
+	@touch ~/.bash_sessions_disable
 	@ln -s $(current_dir)/bash_profile ~/.bash_profile
 
 refresh-submodules:
