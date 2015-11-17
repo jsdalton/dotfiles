@@ -3,3 +3,5 @@
 	email = jim.dalton@gmail.com
 [core]
 	editor = /usr/bin/vim
+[push]
+  default = simple
