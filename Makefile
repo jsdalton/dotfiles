@@ -6,7 +6,7 @@ update:	update-janus refresh
 
 upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements
 
-install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts
+install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-bundler install-gems
 
 freeze: freeze-brews freeze-pip-requirements freeze-casks
 
@@ -121,5 +121,17 @@ upgrade-pip-requirements:
 	@echo "Upgrading pip requirements..."
 	@pip install --upgrade pip
 	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip install --upgrade
+
+install-bundler:
+	@gem install bundler
+	@rbenv rehash
+
+install-gems:
+	@bundle install --gemfile=./Gemfile
+	@rbenv rehash
+
+upgrade-gems:
+	@bundle upgrade --gemfile=./Gemfile
+	@rbenv rehash
 
 .PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig
