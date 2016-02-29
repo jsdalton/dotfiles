@@ -4,6 +4,9 @@ export PATH=/usr/local/bin:~/bin:$PATH
 # Set prompt
 export PS1="[\h] \w/\$ "
 
+# Rbenv
+eval "$(rbenv init -)"
+
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi

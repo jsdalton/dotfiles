@@ -4,7 +4,7 @@ current_dir := $(shell pwd)
 
 update:	update-janus refresh
 
-upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements
+upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems
 
 install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-bundler install-gems
 
@@ -126,12 +126,19 @@ install-bundler:
 	@gem install bundler
 	@rbenv rehash
 
-install-gems:
+install-ruby:
+	@rbenv versions | grep 2.2.3 || rbenv install 2.2.3
+	@rbenv global 2.2.3
+
+install-gems: install-ruby
 	@bundle install --gemfile=./Gemfile
 	@rbenv rehash
 
-upgrade-gems:
-	@bundle upgrade --gemfile=./Gemfile
+use-rbenv:
+	@rbenv global 2.2.3
+
+upgrade-gems: use-rbenv
+	@bundle update
 	@rbenv rehash
 
 .PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig

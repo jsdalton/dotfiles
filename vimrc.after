@@ -27,3 +27,5 @@ let g:buffergator_split_size = 18
 nmap <F3> O<C-R>=strftime("%a %Y-%m-%d %H:%M")<CR><Esc>j0
 imap <F3> <C-R>=strftime("%a %Y-%m-%d %H:%M")<CR>
 
+" Syntastic
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
