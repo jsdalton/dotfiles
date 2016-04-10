@@ -105,6 +105,10 @@ install-casks:
 	@echo "Installing casks..."
 	@cat cask/CASKS.txt | xargs brew cask install
 
+install-npm-modules:
+	@echo "Installing NPM modules..."
+	@cat npm/MODULES.txt | xargs npm install -g
+
 freeze-casks:
 	@echo "Freezing casks..."
 	@brew cask list | tr '\t' '\n' > cask/CASKS.txt
