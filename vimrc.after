@@ -7,6 +7,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType rust setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd BufRead,BufNewFile *.html.erb.deface setlocal filetype=html.eruby
+autocmd BufRead,BufNewFile *.hbs setlocal filetype=mustache
 
 " Clear up the matching parenthsis colors to make less confusing!
 highlight MatchParen cterm=bold ctermfg=lightgreen ctermbg=black
@@ -29,6 +30,7 @@ imap <F3> <C-R>=strftime("%a %Y-%m-%d %H:%M")<CR>
 
 " Syntastic
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Enable JSX syntax highlighting in *.js files
 let g:jsx_ext_required = 0
