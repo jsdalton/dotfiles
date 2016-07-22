@@ -1,9 +1,10 @@
-google-chrome
 1password
-skype
-virtualbox
-vagrant
-mou
-dragondrop
-slack
 dropbox
+flux
+google-chrome
+mou
+skype
+slack
+spectacle
+vagrant
+virtualbox

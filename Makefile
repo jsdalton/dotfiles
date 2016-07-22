@@ -6,7 +6,7 @@ update:	update-janus refresh
 
 upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems
 
-install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-bundler install-gems
+install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-bundler install-gems install-casks
 
 freeze: freeze-brews freeze-pip-requirements freeze-casks
 
@@ -98,10 +98,11 @@ freeze-brews:
 
 update-brew-cask:
 	@echo "Updating brew cask..."
+	@brew tap caskroom/cask
 	@brew cask update
 	@brew cask doctor
 
-install-casks:
+install-casks: update-brew-cask
 	@echo "Installing casks..."
 	@cat cask/CASKS.txt | xargs brew cask install
 
