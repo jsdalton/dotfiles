@@ -1,5 +1,5 @@
 # Set path
-export PATH=/usr/local/bin:~/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 
 # Set prompt
 export PS1="[\h] \w/\$ "
