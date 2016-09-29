@@ -30,6 +30,8 @@ gitconfig:
 	@echo "Linking gitconfig..."
 	-@rm -rf ~/.gitconfig || true
 	@ln -s $(current_dir)/gitconfig ~/.gitconfig
+	-@rm -rf ~/.git-completion.bash || true
+	@ln -s $(current_dir)/git-completion.bash ~/.git-completion.bash
 
 janus:
 	@echo "Linking janus submodules..."
@@ -56,6 +58,7 @@ bash:
 	-@rm ~/.bash_profile || true
 	@touch ~/.bash_sessions_disable
 	@ln -s $(current_dir)/bash_profile ~/.bash_profile
+	@mkdir ~/.sources
 
 refresh-submodules:
 	@echo "Refreshing project submodules..."
