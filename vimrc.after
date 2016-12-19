@@ -34,3 +34,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 " Enable JSX syntax highlighting in *.js files
 let g:jsx_ext_required = 0
+
+" vim-notes
+let g:notes_directories = ['~/Documents/Notes']
+let g:notes_suffix = '.txt'
