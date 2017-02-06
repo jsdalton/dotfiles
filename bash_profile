@@ -50,6 +50,11 @@ function trim {
   tr -d '\040\011\012\015'
 }
 
+# Do a rubocop
+function rubocop! {
+  git diff origin/master --name-only | grep '.rb$' | xargs -L 1 rubocop -a
+}
+
 # Fun aliases
 alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
