@@ -32,6 +32,12 @@ imap <F3> <C-R>=strftime("%a %Y-%m-%d %H:%M")<CR>
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_javascript_checkers = ['eslint']
 
+" Make sure Syntastic runs on open/save
+let g:syntastic_mode_map = {'mode': 'active'}
+
+" Don't open that annoying errors window automatically
+let g:syntastic_auto_loc_list = 2
+
 " Enable JSX syntax highlighting in *.js files
 let g:jsx_ext_required = 0
 
