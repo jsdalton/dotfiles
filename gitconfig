@@ -9,3 +9,5 @@
 	helper = osxkeychain
 [rerere]
 	enabled = true
+[rebase]
+	autosquash = true
