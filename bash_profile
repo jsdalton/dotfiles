@@ -10,6 +10,9 @@ eval "$(rbenv init -)"
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+if [ -f ~/.tmuxinator-completion.bash ]; then
+  . ~/.tmuxinator-completion.bash
+fi
 
 # Make sure locales are correct in terminal
 export LC_ALL=en_US.UTF-8

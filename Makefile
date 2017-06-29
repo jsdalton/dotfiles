@@ -47,6 +47,8 @@ tmux:
 	@echo "Linking tmux files..."
 	-@rm ~/.tmux.conf || true
 	@ln -s $(current_dir)/tmux.conf ~/.tmux.conf
+	-@rm -rf ~/.tmuxinator-completion.bash || true
+	@ln -s $(current_dir)/tmuxinator-completion.bash ~/.tmuxinator-completion.bash
 
 jrnl:
 	@echo "Linking jrnl files..."
