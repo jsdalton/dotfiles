@@ -4,7 +4,7 @@ current_dir := $(shell pwd)
 
 update:	update-janus refresh
 
-upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems
+upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems upgrade-casks
 
 install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-bundler install-gems install-casks
 
@@ -119,6 +119,12 @@ freeze-casks:
 	@echo "Freezing casks..."
 	@brew cask list | tr '\t' '\n' > cask/CASKS.txt
 
+upgrade-casks: reinstall-outdated-casks
+
+reinstall-outdated-casks:
+	@echo "Reinstalling outdated casks..."
+	brew cask outdated | cut -f 1 -d " " | xargs brew cask reinstall
+
 freeze-pip-requirements:
 	@echo "Freezing pip requirements..."
 	@pip freeze > ./pip/REQUIREMENTS.txt
@@ -151,4 +157,4 @@ upgrade-gems: use-rbenv
 	@bundle update
 	@rbenv rehash
 
-.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig
+.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig upgrade-casks
