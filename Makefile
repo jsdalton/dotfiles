@@ -1,6 +1,7 @@
 .DEFAULT_GOAL = update
 
 current_dir := $(shell pwd)
+RUBY_VERSION := 2.3.1
 
 update:	update-janus refresh
 
@@ -143,15 +144,15 @@ install-bundler:
 	@rbenv rehash
 
 install-ruby:
-	@rbenv versions | grep 2.2.3 || rbenv install 2.2.3
-	@rbenv global 2.2.3
+	@rbenv versions | grep $(RUBY_VERSION) || rbenv install $(RUBY_VERSION)
+	@rbenv global $(RUBY_VERSION)
 
 install-gems: install-ruby
 	@bundle install --gemfile=./Gemfile
 	@rbenv rehash
 
 use-rbenv:
-	@rbenv global 2.2.3
+	@rbenv global $(RUBY_VERSION)
 
 upgrade-gems: use-rbenv
 	@bundle update
