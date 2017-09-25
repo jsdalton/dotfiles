@@ -1,1 +1,2 @@
 particle-cli
+json-dereference-cli
