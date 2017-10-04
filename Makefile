@@ -151,7 +151,7 @@ install-gems: install-ruby
 	@bundle install --gemfile=./Gemfile
 	@rbenv rehash
 
-use-rbenv:
+use-rbenv: install-ruby
 	@rbenv global $(RUBY_VERSION)
 
 upgrade-gems: use-rbenv
