@@ -1,6 +1,12 @@
 # Set path
 export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 
+# Set Go path stuff
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
 # Set prompt
 export PS1="[\h] \w/\$ "
 
@@ -56,6 +62,19 @@ function trim {
 # Do a rubocop
 function rubocop! {
   git diff origin/master --name-only | grep '.rb$' | xargs -L 1 rubocop -a
+}
+
+function preview! {
+  git status
+  branch=$(git symbolic-ref -q --short HEAD)
+  echo
+  echo "About to merge '"$branch"' branch into preview...";
+  read -p "Press [Enter] to continue: "
+  echo
+  git checkout preview && git fetch origin preview && git reset --hard origin/preview
+  git merge $branch -m "Merging "$branch
+  git push origin --force-with-lease
+  git checkout $branch
 }
 
 # Fun aliases
