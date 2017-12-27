@@ -20,6 +20,10 @@ if [ -f ~/.tmuxinator-completion.bash ]; then
   . ~/.tmuxinator-completion.bash
 fi
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # Make sure locales are correct in terminal
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
