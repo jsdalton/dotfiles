@@ -1,3 +1,7 @@
+# This is a hack to get nvm working.
+# See: https://github.com/creationix/nvm/issues/1652
+PATH="/usr/local/bin:$(getconf PATH)"
+
 # Set path
 export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 
@@ -19,10 +23,6 @@ fi
 if [ -f ~/.tmuxinator-completion.bash ]; then
   . ~/.tmuxinator-completion.bash
 fi
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
 
 # Make sure locales are correct in terminal
 export LC_ALL=en_US.UTF-8
@@ -85,3 +85,8 @@ function preview! {
 alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
 alias reset_preview!="git checkout preview && git fetch origin preview && git reset --hard origin/preview"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+

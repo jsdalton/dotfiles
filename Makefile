@@ -105,7 +105,7 @@ freeze-brews:
 update-brew-cask:
 	@echo "Updating brew cask..."
 	@brew tap caskroom/cask
-	@brew cask update
+	@brew update
 	@brew cask doctor
 
 install-casks: update-brew-cask
@@ -128,16 +128,16 @@ reinstall-outdated-casks:
 
 freeze-pip-requirements:
 	@echo "Freezing pip requirements..."
-	@pip freeze > ./pip/REQUIREMENTS.txt
+	@pip2 freeze > ./pip/REQUIREMENTS.txt
 
 install-pip-requirements:
 	@echo "Installing pip requirements..."
-	@pip install -r ./pip/REQUIREMENTS.txt
+	@pip2 install -r ./pip/REQUIREMENTS.txt
 
 upgrade-pip-requirements:
 	@echo "Upgrading pip requirements..."
-	@pip install --upgrade pip
-	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip install --upgrade
+	@pip2 install --upgrade pip
+	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip2 install --upgrade
 
 install-bundler:
 	@gem install bundler
