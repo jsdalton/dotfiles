@@ -47,3 +47,10 @@ let g:notes_suffix = '.txt'
 
 " make ctrl+p faster by ignorning files in .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" auto read files that have not been edited
+set autoread
+autocmd FocusGained * checktime
+
+" make a friendly ag alias that does not overrite current buffer automatically
+ca ag Ag!
