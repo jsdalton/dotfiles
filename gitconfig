@@ -2,7 +2,7 @@
 	name = Jim Dalton
 	email = jim.dalton@gmail.com
 [core]
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 [push]
   default = simple
 [credential]

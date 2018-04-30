@@ -2,7 +2,7 @@
 dropbox
 flux
 google-chrome
-mou
+macdown
 skype
 slack
 spectacle
