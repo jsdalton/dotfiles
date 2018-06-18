@@ -17,6 +17,9 @@ export PS1="[\h] \w/\$ "
 # Rbenv
 eval "$(rbenv init -)"
 
+# Set default editor
+export EDITOR=vim
+
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
@@ -75,8 +78,28 @@ function preview! {
   echo "About to merge '"$branch"' branch into preview...";
   read -p "Press [Enter] to continue: "
   echo
-  git checkout preview && git fetch origin preview && git reset --hard origin/preview
+  git checkout preview && \
+    git fetch origin preview && \
+    git reset --hard origin/preview
   git merge $branch -m "Merging "$branch
+  git push origin --force-with-lease
+  git checkout $branch
+}
+
+function rebuild_preview!  {
+  git status
+  branch=$(git symbolic-ref -q --short HEAD)
+  echo
+  echo "About to rebuild preview from master...";
+  read -p "Press [Enter] to continue: "
+  echo
+  git checkout preview \
+    && git fetch origin \
+    && git reset --hard origin/master
+  hub pr list --format="origin/%H%l%n" -o updated \
+    | grep "On Preview" \
+    | cut -d " " -f1 \
+    | xargs -L 1 git merge --no-edit
   git push origin --force-with-lease
   git checkout $branch
 }
