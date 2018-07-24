@@ -96,12 +96,18 @@ function rebuild_preview!  {
   git checkout preview \
     && git fetch origin \
     && git reset --hard origin/master
+  origin_master_ref=$(git rev-parse origin/master)
   hub pr list --format="origin/%H%l%n" -o updated \
     | grep "On Preview" \
     | cut -d " " -f1 \
     | xargs -L 1 git merge --no-edit
-  git push origin --force-with-lease
-  git checkout $branch
+  preview_ref=$(git rev-parse preview)
+  if [ "$preview_ref" = "$origin_master_ref" ]; then
+    echo "No change on preview branch aborting..."
+  else
+    git push origin --force-with-lease
+    git checkout $branch
+  fi
 }
 
 # Fun aliases
