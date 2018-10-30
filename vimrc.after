@@ -55,3 +55,9 @@ autocmd FocusGained * checktime
 
 " make a friendly ag alias that does not overrite current buffer automatically
 ca ag Ag!
+
+" colorscheme
+let g:solarized_termcolors=256
+set t_Co=16
+set background=dark
+colorscheme solarized
