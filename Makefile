@@ -7,7 +7,7 @@ update:	update-janus refresh
 
 upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems upgrade-casks
 
-install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-bundler install-gems install-casks
+install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-gems install-casks
 
 freeze: freeze-brews freeze-pip-requirements freeze-casks
 
@@ -139,7 +139,7 @@ upgrade-pip-requirements:
 	@pip2 install --upgrade pip
 	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip2 install --upgrade
 
-install-bundler:
+install-bundler: install-ruby
 	@gem install bundler
 	@rbenv rehash
 
@@ -147,11 +147,11 @@ install-ruby:
 	@rbenv versions | grep $(RUBY_VERSION) || rbenv install $(RUBY_VERSION)
 	@rbenv global $(RUBY_VERSION)
 
-install-gems: install-ruby
+install-gems: install-bundler
 	@bundle install --gemfile=./Gemfile
 	@rbenv rehash
 
-use-rbenv: install-ruby
+use-rbenv: install-bundler
 	@rbenv global $(RUBY_VERSION)
 
 upgrade-gems: use-rbenv
