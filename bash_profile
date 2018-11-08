@@ -110,6 +110,10 @@ function rebuild_preview!  {
   fi
 }
 
+function lab {
+  cd ~/lab
+}
+
 # Fun aliases
 alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
@@ -120,3 +124,5 @@ alias vi=vim
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
+# kubectl for contentful
+export KUBECONFIG=~/.kube/cf-authinfo.yaml:~/.kube/cf-production.yaml:~/.kube/cf-bi.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml
