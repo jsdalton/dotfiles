@@ -107,6 +107,7 @@ update-brew-cask:
 	@brew tap caskroom/cask
 	@brew update
 	@brew cask doctor
+	@brew cleanup
 
 install-casks: update-brew-cask
 	@echo "Installing casks..."
