@@ -89,6 +89,7 @@ update-homebrew:
 	@echo "Updating homebrew..."
 	@brew update
 	@brew doctor
+	@brew cleanup
 
 upgrade-brews: update-homebrew
 	@echo "Upgrading homebrew..."
@@ -107,7 +108,6 @@ update-brew-cask:
 	@brew tap caskroom/cask
 	@brew update
 	@brew cask doctor
-	@brew cleanup
 
 install-casks: update-brew-cask
 	@echo "Installing casks..."
