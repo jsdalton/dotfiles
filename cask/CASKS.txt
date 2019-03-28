@@ -1,4 +1,6 @@
 1password
+anki
+docker
 dropbox
 flux
 google-chrome
@@ -7,5 +9,3 @@ skype
 slack
 spectacle
 vagrant
-virtualbox
-charles

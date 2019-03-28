@@ -47,7 +47,12 @@ let g:notes_directories = ['~/Documents/Notes']
 let g:notes_suffix = '.txt'
 
 " make ctrl+p faster by ignorning files in .gitignore
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ -g ""'
 
 " auto read files that have not been edited
 set autoread

@@ -88,8 +88,8 @@ install-homebrew:
 update-homebrew:
 	@echo "Updating homebrew..."
 	@brew update
-	@brew doctor
 	@brew cleanup
+	@brew doctor
 
 upgrade-brews: update-homebrew
 	@echo "Upgrading homebrew..."

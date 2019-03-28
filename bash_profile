@@ -120,6 +120,9 @@ alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:
 alias reset_preview!="git checkout preview && git fetch origin preview && git reset --hard origin/preview"
 alias vi=vim
 
+# Maybe remove when not at ctful
+alias aws-login="~/projects/cf-aws-login/bin/aws-login"
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
