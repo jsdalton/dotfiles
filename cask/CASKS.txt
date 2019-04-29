@@ -9,3 +9,4 @@ skype
 slack
 spectacle
 vagrant
+whatsapp
