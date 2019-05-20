@@ -5,6 +5,7 @@ dropbox
 flux
 google-chrome
 macdown
+racket
 skype
 slack
 spectacle
