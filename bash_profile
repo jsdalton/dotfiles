@@ -114,6 +114,24 @@ function lab {
   cd ~/lab
 }
 
+function kube_contexts {
+  kubectl config get-contexts | grep gatekeeper | awk '{ print $2 }'
+}
+
+function kube_console {
+  context='gatekeeper-001-euw1.quirely.com'
+  [ -n "$1" ] && context=$1
+  echo "Launching console on pod in $context cluster..."
+  kubectl get pods --context=$context --selector=app=gatekeeper | grep Running | awk '{ print $1 }' | tail -n 1 | xargs -o -I {} kubectl exec {} --context=$context -c gatekeeper -i -t -- rails console
+}
+
+function kube_sh {
+  context='gatekeeper-001-euw1.quirely.com'
+  [ -n "$1" ] && context=$1
+  echo "Launching console on pod in $context cluster..."
+  kubectl get pods --context=$context --selector=app=gatekeeper | grep Running | awk '{ print $1 }' | tail -n 1 | xargs -o -I {} kubectl exec {} --context=$context -c gatekeeper -i -t -- sh
+}
+
 # Fun aliases
 alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
