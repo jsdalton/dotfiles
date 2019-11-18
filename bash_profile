@@ -11,6 +11,9 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# Suppress warning about default interactive shell
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Set prompt
 export PS1="[\h] \w/\$ "
 
@@ -146,4 +149,4 @@ export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 # kubectl for contentful
-export KUBECONFIG=~/.kube/cf-authinfo.yaml:~/.kube/cf-production.yaml:~/.kube/cf-bi.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml
+export KUBECONFIG=~/.kube/cf-authinfo.yaml:~/.kube/cf-production.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml
