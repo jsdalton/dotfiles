@@ -1,4 +1,3 @@
-1password
 1password-cli
 anki
 docker
@@ -8,7 +7,7 @@ google-chrome
 macdown
 racket
 skype
-slack
 spectacle
 vagrant
+virtualbox
 whatsapp

@@ -10,7 +10,6 @@ dfu-util 0.9
 docker-compose 1.24.0
 doxygen 1.8.15
 erlang 21.3.8
-erlang@19 19.3.6.13
 eslint 5.16.0
 fontconfig 2.13.1
 freetype 2.10.0
@@ -77,3 +76,5 @@ wget 1.20.3
 wxmac 3.0.4_1
 xz 5.2.4
 zeromq 4.3.1_1
+kubectx
+coreutils

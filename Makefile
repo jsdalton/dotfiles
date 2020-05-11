@@ -1,7 +1,7 @@
 .DEFAULT_GOAL = update
 
 current_dir := $(shell pwd)
-RUBY_VERSION := 2.3.1
+RUBY_VERSION := 2.6.5
 
 update:	update-janus refresh
 
@@ -104,8 +104,6 @@ freeze-brews:
 	@brew list --versions > ./brew/FORMULAE.txt
 
 update-brew-cask:
-	@echo "Updating brew cask..."
-	@brew tap caskroom/cask
 	@brew update
 	@brew cask doctor
 
