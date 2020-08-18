@@ -119,24 +119,22 @@ freeze-casks:
 	@echo "Freezing casks..."
 	@brew cask list | tr '\t' '\n' > cask/CASKS.txt
 
-upgrade-casks: reinstall-outdated-casks
-
-reinstall-outdated-casks:
-	@echo "Reinstalling outdated casks..."
-	brew cask outdated | cut -f 1 -d " " | xargs brew cask reinstall
+upgrade-casks:
+	@echo "Upgrading homebrew casks..."
+	@brew upgrade --cask
 
 freeze-pip-requirements:
 	@echo "Freezing pip requirements..."
-	@pip2 freeze > ./pip/REQUIREMENTS.txt
+	@pip3 freeze > ./pip/REQUIREMENTS.txt
 
 install-pip-requirements:
 	@echo "Installing pip requirements..."
-	@pip2 install -r ./pip/REQUIREMENTS.txt
+	@pip3 install -r ./pip/REQUIREMENTS.txt
 
 upgrade-pip-requirements:
 	@echo "Upgrading pip requirements..."
-	@pip2 install --upgrade pip
-	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip2 install --upgrade
+	@pip3 install --upgrade pip
+	@cat pip/REQUIREMENTS.txt | cut -f 1 -d "=" | xargs pip3 install --upgrade
 
 install-bundler: install-ruby
 	@gem install bundler

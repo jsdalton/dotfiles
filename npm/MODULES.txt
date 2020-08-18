@@ -1,2 +1,4 @@
 particle-cli
 json-dereference-cli
+typescript
+ts-node
