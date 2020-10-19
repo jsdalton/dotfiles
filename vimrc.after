@@ -32,6 +32,9 @@ imap <F3> <C-R>=strftime("%a %Y-%m-%d %H:%M")<CR>
 " Syntastic
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+let g:syntastic_typescript_eslint_exec = 'eslint_d'
 
 " Make sure Syntastic runs on open/save
 let g:syntastic_mode_map = {'mode': 'active'}
