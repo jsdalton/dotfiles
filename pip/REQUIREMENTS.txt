@@ -4,7 +4,7 @@ certifi==2019.3.9
 cffi==1.12.3
 chardet==3.0.4
 configparser==3.7.4
-cryptography==2.6.1
+cryptography==3.2
 ecdsa==0.13.2
 entrypoints==0.3
 enum34==1.1.6
