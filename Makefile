@@ -1,7 +1,7 @@
 .DEFAULT_GOAL = update
 
 current_dir := $(shell pwd)
-RUBY_VERSION := 2.6.5
+RUBY_VERSION := 2.6.6
 
 update:	update-janus refresh
 
@@ -62,6 +62,10 @@ bash:
 	@touch ~/.bash_sessions_disable
 	@ln -s $(current_dir)/bash_profile ~/.bash_profile
 	@mkdir ~/.sources || true
+
+install-vim-plug:
+	@echo "Installing vim plug for neovim"
+	@curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 refresh-submodules:
 	@echo "Refreshing project submodules..."

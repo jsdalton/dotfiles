@@ -6,3 +6,6 @@ gem 'rubocop'
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
 gem 'tmuxinator'
+
+# For using coc-ruby
+gem 'solargraph'

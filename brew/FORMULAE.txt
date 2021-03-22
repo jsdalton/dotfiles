@@ -77,3 +77,6 @@ xz 5.2.4
 zeromq 4.3.1_1
 kubectx
 coreutils
+neovim
+fzf
+go-jira

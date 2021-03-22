@@ -11,3 +11,4 @@ spectacle
 vagrant
 virtualbox
 whatsapp
+iterm2

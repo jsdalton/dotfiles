@@ -100,12 +100,13 @@ function rebuild_preview!  {
     && git fetch origin \
     && git reset --hard origin/master
   origin_master_ref=$(git rev-parse origin/master)
+  origin_preview_ref=$(git rev-parse origin/preview)
   hub pr list --format="origin/%H%l%n" -o updated \
     | grep "On Preview" \
     | cut -d " " -f1 \
     | xargs -L 1 git merge --no-edit
   preview_ref=$(git rev-parse preview)
-  if [ "$preview_ref" = "$origin_master_ref" ]; then
+  if [ "$preview_ref" = "$origin_preview_ref" ]; then
     echo "No change on preview branch aborting..."
   else
     git push origin --force-with-lease
@@ -140,9 +141,7 @@ alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[3
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
 alias reset_preview!="git checkout preview && git fetch origin preview && git reset --hard origin/preview"
 alias vi=vim
-
-# Maybe remove when not at ctful
-alias aws-login="~/projects/cf-aws-login/bin/aws-login"
+alias k=kubectl
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -150,3 +149,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # kubectl for contentful
 export KUBECONFIG=~/.kube/cf-authinfo.yaml:~/.kube/cf-production.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml
+
+# dotenv
+eval "$(direnv hook bash)"
