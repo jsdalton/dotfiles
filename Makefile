@@ -119,10 +119,6 @@ install-npm-modules:
 	@echo "Installing NPM modules..."
 	@cat npm/MODULES.txt | xargs npm install -g
 
-freeze-casks:
-	@echo "Freezing casks..."
-	@brew cask list | tr '\t' '\n' > cask/CASKS.txt
-
 upgrade-casks:
 	@echo "Upgrading homebrew casks..."
 	@brew upgrade --cask
