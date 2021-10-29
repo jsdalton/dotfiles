@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/jsdalton/projects/entitlements'
+let g:netrw_dirhist_2='/Users/jsdalton/projects'
+let g:netrw_dirhist_1='/Users/jsdalton/projects/entitlements'

@@ -142,13 +142,22 @@ alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:
 alias reset_preview!="git checkout preview && git fetch origin preview && git reset --hard origin/preview"
 alias vi=vim
 alias k=kubectl
+alias kcuc="kubectl config use-context"
+alias kccc="kubectl config current-context"
+alias kcgc="kubectl config get-contexts"
+alias kgp="kubectl get pods"
+alias kdp="kubectl describe pod"
+alias kgj="kubectl get jobs"
+alias kgc="kubectl get cronjobs"
+alias kgns="kubectl get namespaces"
+alias keit="kubectl exec -it"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 # kubectl for contentful
-export KUBECONFIG=~/.kube/cf-authinfo.yaml:~/.kube/cf-production.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml
+export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml:~/.kube/cf-production.yaml:/Users/jsdalton/.kube/cf-convenience.yaml
 
 # dotenv
 eval "$(direnv hook bash)"

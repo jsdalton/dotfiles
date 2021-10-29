@@ -9,3 +9,4 @@ gem 'tmuxinator'
 
 # For using coc-ruby
 gem 'solargraph'
+gem 'neovim'

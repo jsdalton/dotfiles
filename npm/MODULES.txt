@@ -1,4 +1,6 @@
 particle-cli
 json-dereference-cli
 typescript
+typescript-language-server
 ts-node
+neovim

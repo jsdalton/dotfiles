@@ -20,6 +20,7 @@ double-conversion 3.1.5_1
 doxygen 1.9.1
 erlang 23.3.1
 eslint 7.24.0
+fd
 fontconfig 2.13.1
 freetype 2.10.4
 fribidi 1.0.10
@@ -120,6 +121,7 @@ rabbitmq 3.8.14
 rbenv 1.1.2
 readline 8.1
 reattach-to-user-namespace 2.9
+ripgrep
 rtmpdump 2.4+20151223_1
 ruby 3.0.1
 ruby-build 20210405
