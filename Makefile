@@ -7,7 +7,7 @@ update:	update-janus refresh
 
 upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems upgrade-casks
 
-install: refresh-submodules install-homebrew update-homebrew install-brews install-pip-requirements install-janus update-janus link-dotfiles install-powerline-fonts install-gems install-casks
+install: link-dotfiles refresh-submodules install-homebrew update-homebrew install-vim-plug install-brews install-pip-requirements install-janus update-janus install-powerline-fonts install-gems install-casks
 
 freeze: freeze-brews freeze-pip-requirements freeze-casks
 
@@ -87,7 +87,7 @@ update-janus: refresh-submodules
 
 install-homebrew:
 	@echo "Installing homebrew..."
-	-ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 update-homebrew:
 	@echo "Updating homebrew..."
@@ -107,13 +107,9 @@ freeze-brews:
 	@echo "Freezing brews..."
 	@brew list --versions > ./brew/FORMULAE.txt
 
-update-brew-cask:
-	@brew update
-	@brew cask doctor
-
-install-casks: update-brew-cask
+install-casks: update-homebrew
 	@echo "Installing casks..."
-	@cat cask/CASKS.txt | xargs brew cask install
+	@cat cask/CASKS.txt | xargs brew install --cask
 
 install-npm-modules:
 	@echo "Installing NPM modules..."

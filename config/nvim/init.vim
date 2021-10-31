@@ -23,6 +23,7 @@ Plug 'hrsh7th/vim-vsnip'
 
 " Color scheme
 Plug 'arcticicestudio/nord-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
 " general nvim
@@ -43,7 +44,8 @@ nnoremap <C-p> :Telescope find_files<Cr>
 " color scheme settings
 set termguicolors
 syntax on
-colorscheme nord
+colorscheme tokyonight
+let g:lightline = {'colorscheme': 'tokyonight'}
 
 " quickfix
 autocmd FileType qf nnoremap <buffer> t <CR>
@@ -183,3 +185,9 @@ ca ag Ag!
 
 " source vimrc (reload init.vm)
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" nerdtre 
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>

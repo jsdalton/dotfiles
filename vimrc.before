@@ -3,3 +3,6 @@ set exrc
 
 " disable unsafe commands in local .vimrc files 
 set secure
+
+" disable tlib in janus, because of weird error
+call janus#disable_plugin('tlib')

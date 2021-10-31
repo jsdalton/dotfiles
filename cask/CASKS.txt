@@ -1,0 +1,10 @@
+1password-cli
+anki
+docker
+dropbox
+flux
+macdown
+rectangle
+vagrant
+virtualbox
+iterm2
