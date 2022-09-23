@@ -38,7 +38,7 @@ pathspec==0.8.1
 pep8==1.7.1
 pluggy==0.13.1
 powerline-status==2.7
-protobuf==3.15.8
+protobuf==3.18.3
 psutil==5.8.0
 py==1.10.0
 pyasn1==0.4.8
