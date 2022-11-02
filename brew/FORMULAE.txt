@@ -22,6 +22,7 @@ efm-langserver
 erlang 23.3.1
 eslint 7.24.0
 fd
+ffmpeg
 fontconfig 2.13.1
 freetype 2.10.4
 fribidi 1.0.10
@@ -30,6 +31,7 @@ gd 2.3.2
 gdbm 1.19
 gdk-pixbuf 2.42.6
 gettext 0.21
+gifsicle
 glib 2.68.0
 go 1.16.3
 go-jira 1.0.27
@@ -46,7 +48,6 @@ jasper 2.0.28
 jemalloc 5.2.1_1
 jpeg 9d
 jq 1.6
-jrnl 2.8
 kops 1.19.1
 krb5 1.19.1
 kubectx 0.9.3
@@ -87,7 +88,6 @@ luajit-openresty 20201229_1
 luv 1.36.0-0_1
 lzo 2.10
 m4 1.4.18
-minimal-racket 8.0_2
 mit-scheme 11.2
 mpdecimal 2.5.1
 msgpack 3.3.0

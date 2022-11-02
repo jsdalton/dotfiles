@@ -18,6 +18,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
+" asterisk search
+Plug 'junegunn/vim-slash'
+
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
 
@@ -30,6 +33,10 @@ Plug 'tpope/vim-surround'
 
 " parens matching etc
 Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
+
+" React
+Plug 'neoclide/vim-jsx-improve'
 call plug#end()
 
 " general nvim
@@ -52,9 +59,8 @@ nnoremap <C-p> :Telescope find_files<Cr>
 
 " color scheme settings
 set termguicolors
-syntax on
 colorscheme tokyonight
-let g:lightline = {'colorscheme': 'tokyonight'}
+let g:lightline = { 'colorscheme': 'tokyonight', 'active': { 'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ] } }
 
 " quickfix
 autocmd FileType qf nnoremap <buffer> t <CR>
@@ -67,13 +73,13 @@ local on_attach = function(_, bufnr)
 
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ff', '<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>', opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-l>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
@@ -110,11 +116,11 @@ local eslint = {
 }
 
 local rubocop = {
-  lintCommand = "bundle exec rubocop --format emacs --force-exclusion --stdin ${INPUT}",
+  lintCommand = "rubocop --format emacs --force-exclusion --stdin ${INPUT}",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   linkIgnoreExitCode = true,
-  formatCommand = "bundle exec rubocop -A -f quiet --stderr -s ${INPUT}",
+  formatCommand = "c rubocop -A -f quiet --stderr -s ${INPUT}",
   formatStdin = true
 }
 
@@ -149,12 +155,23 @@ EOF
 
 " telescope stuff
 nnoremap <Leader>tp :lua require'telescope.builtin'.builtin{}<CR>
+nnoremap <Leader>tg :lua require'telescope.builtin'.grep_string{}<CR>
+nnoremap <Leader>ts :lua require'telescope.builtin'.live_grep{}<CR>
 
 lua << EOF
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    layout_strategy = 'vertical',
+    layout_config = {
+      horizontal = {
+        width = 0.9
+        },
+      vertical = {
+        width = 0.9
+        }
+      },
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)
@@ -186,8 +203,8 @@ EOF
 
 " Setup Completion
 " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-lua <<EOF
-local cmp = require'cmp'
+lua << EOF
+local cmp = require 'cmp'
 cmp.setup({
   -- Enable LSP snippets
   snippet = {
@@ -204,7 +221,7 @@ cmp.setup({
     ['<S-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-Space>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
+      behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
     ['<Tab>'] = cmp.mapping.confirm({
@@ -230,9 +247,24 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 EOF
 
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  autotag = {
+    enable = true,
+  },
+  hightlight = { enable = true },
+  indent = { enable = true }
+}
+EOF
+
 " move lines up and down
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " make a friendly ag alias that does not overrite current buffer automatically
 ca ag Ag!
@@ -248,3 +280,6 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 " ruby stuf
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} set ft=ruby
+
+" nerd commenter enable 
+let NERDSpaceDelims=1

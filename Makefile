@@ -1,7 +1,7 @@
 .DEFAULT_GOAL = update
 
 current_dir := $(shell pwd)
-RUBY_VERSION := 2.6.6
+RUBY_VERSION := 3.1.1
 
 update:	update-janus refresh
 

@@ -4,6 +4,7 @@ PATH="/usr/local/bin:$(getconf PATH)"
 
 # Set path
 export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
+export PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk:$PATH
 
 # Set Go path stuff
 export GOPATH=$HOME/golang
@@ -13,6 +14,9 @@ export PATH=$PATH:$GOROOT/bin
 
 # Suppress warning about default interactive shell
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 # Set prompt
 export PS1="[\h] \w/\$ "
@@ -159,5 +163,30 @@ export NVM_DIR="$HOME/.nvm"
 # kubectl for contentful
 export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml:~/.kube/cf-production.yaml:/Users/jsdalton/.kube/cf-convenience.yaml
 
+# ensure tmux uses direnv
+alias tmux='direnv exec / tmux'
+
+# Run 'nvm use' automatically every time there's 
+# a .nvmrc file in the directory. Also, revert to default 
+# version when entering a directory without .nvmrc
+#
+enter_directory() {
+if [[ $PWD == $PREV_PWD ]]; then
+    return
+fi
+
+PREV_PWD=$PWD
+if [[ -f ".nvmrc" ]]; then
+    nvm use
+    NVM_DIRTY=true
+elif [[ $NVM_DIRTY = true ]]; then
+    nvm use default
+    NVM_DIRTY=false
+fi
+}
+
+export PROMPT_COMMAND=enter_directory
+
 # dotenv
 eval "$(direnv hook bash)"
+
