@@ -41,6 +41,8 @@ call plug#end()
 
 " general nvim
 set nowrap                        " don't wrap lines
+set autoindent                    " autoindent new lines
+set smartindent                   " smartindent new lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
@@ -49,6 +51,7 @@ set backspace=indent,eol,start    " backspace through everything in insert mode
 set number
 set switchbuf+=usetab,newtab
 set showtabline=2
+filetype plugin indent on
 
 " prevent out of memory errors
 set maxmempattern=20000
@@ -77,7 +80,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ff', '<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ff', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -93,8 +96,7 @@ local on_attach = function(_, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Enable the following language servers
 local servers = { 'tsserver', 'solargraph' }

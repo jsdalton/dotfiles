@@ -122,6 +122,28 @@ function lab {
   cd ~/lab
 }
 
+function mov2gif {
+  source_file=$1
+  if [ ! -f "$source_file" ]; then
+      echo "$source_file: No such file"
+      return 1
+  fi
+  source_filename="$(basename $source_file .mov)"
+  dest_file="$source_filename.gif"
+  echo "About to create/ovewrite a gif file '"$dest_file"' from source file '"$source_file"'...";
+  read -r -p "Proceed? [y/N] " response
+  if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+  then
+    echo "Processing file..."
+    ffmpeg -i $source_file -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=8 > $dest_file
+    echo "Processing complete."
+    open -a "Google Chrome" $dest_file
+  else
+    echo "Exiting."
+    return 0
+  fi
+}
+
 function kube_contexts {
   kubectl config get-contexts | grep gatekeeper | awk '{ print $2 }'
 }
