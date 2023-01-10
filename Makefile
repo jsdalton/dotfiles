@@ -103,13 +103,17 @@ install-brews:
 	@echo "Installing brews..."
 	@cat brew/FORMULAE.txt | cut -f 1 -d " " | xargs brew install
 
+freeze-casks:
+	@echo "Freezing casks..."
+	@brew list --casks --versions > ./cask/CASKS.txt
+
 freeze-brews:
 	@echo "Freezing brews..."
 	@brew list --versions > ./brew/FORMULAE.txt
 
 install-casks: update-homebrew
 	@echo "Installing casks..."
-	@cat cask/CASKS.txt | xargs brew install --cask
+	@cat cask/CASKS.txt | cut -f 1 -d " " | xargs brew install --cask
 
 install-npm-modules:
 	@echo "Installing NPM modules..."
@@ -151,4 +155,4 @@ upgrade-gems: use-rbenv
 	@bundle update
 	@rbenv rehash
 
-.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-brews freeze-pip-requirements install-pip-requirements gitconfig upgrade-casks
+.PHONY: install update vimrc gvimrc janus config tmux bash update-janus freeze-casks freeze-brews freeze-pip-requirements install-pip-requirements gitconfig upgrade-casks

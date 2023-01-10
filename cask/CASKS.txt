@@ -1,10 +1,14 @@
-1password-cli
-anki
-docker
-dropbox
-flux
-macdown
-rectangle
-vagrant
-virtualbox
-iterm2
+1password-cli 2.8.0
+anki 2.1.54
+docker 2.1.0.5,40693
+dropbox 111.4.472
+flux 40.1
+google-chrome 78.0.3904.108
+iterm2 3.3.12
+macdown 0.8.0d71
+ngrok 3.1.0,gMHPWQMhW1J,a
+skype 8.54.0.91
+spectacle 1.2
+vagrant 2.3.3
+virtualbox 7.0.4,154605
+visual-studio-code 1.47.3
