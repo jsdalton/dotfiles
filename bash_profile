@@ -2,7 +2,11 @@
 # See: https://github.com/creationix/nvm/issues/1652
 PATH="/usr/local/bin:$(getconf PATH)"
 
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Set path
+export PATH=$PATH:/opt/homebrew/bin
 export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 export PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk:$PATH
 
@@ -22,6 +26,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export PS1="[\h] \w/\$ "
 
 # Rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # Set default editor
@@ -180,7 +185,8 @@ alias keit="kubectl exec -it"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # kubectl for contentful
 export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml:~/.kube/cf-production.yaml:/Users/jsdalton/.kube/cf-convenience.yaml
@@ -211,4 +217,3 @@ export PROMPT_COMMAND=enter_directory
 
 # dotenv
 eval "$(direnv hook bash)"
-
