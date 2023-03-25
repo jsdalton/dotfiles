@@ -1,6 +1,7 @@
 [user]
 	name = Jim Dalton
 	email = jim.dalton@gmail.com
+	signingkey = E7939D6D7F11337CA0FB30D6688741C4831FEDBC
 [core]
 	editor = /opt/homebrew/bin/vim
 [push]
@@ -11,3 +12,7 @@
 	enabled = true
 [rebase]
 	autosquash = true
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true

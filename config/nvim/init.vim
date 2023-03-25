@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
@@ -12,6 +13,10 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
+
+" copilot - install with :Copilot auth
+Plug 'zbirenbaum/copilot.lua'
+Plug 'zbirenbaum/copilot-cmp'
 
 " fuzzy find
 Plug 'nvim-lua/plenary.nvim'
@@ -57,7 +62,7 @@ filetype plugin indent on
 set maxmempattern=20000
 
 "" fzf settings
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/bin/fzf
 nnoremap <C-p> :Telescope find_files<Cr>
 
 " color scheme settings
@@ -235,6 +240,7 @@ cmp.setup({
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'copilot'},
     { name = 'vsnip' },
     { name = 'path' },
     { name = 'buffer' },
@@ -258,6 +264,20 @@ require'nvim-treesitter.configs'.setup {
   hightlight = { enable = true },
   indent = { enable = true }
 }
+EOF
+
+
+" copilot
+lua << EOF
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
+require("copilot_cmp").setup({
+  formatters = {
+    insert_text = require("copilot_cmp.format").remove_existing
+  }
+})
 EOF
 
 " move lines up and down

@@ -169,6 +169,14 @@ function kube_sh {
 
 # Fun aliases
 alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
+alias g="git"
+alias gb="git branch"
+alias gs="git status"
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gcm="git checkout master"
+alias gpom="git pull -r origin master"
+
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
 alias reset_preview!="git checkout preview && git fetch origin preview && git reset --hard origin/preview"
 alias vi=vim
@@ -217,3 +225,4 @@ export PROMPT_COMMAND=enter_directory
 
 # dotenv
 eval "$(direnv hook bash)"
+export GPG_TTY=$(tty)
