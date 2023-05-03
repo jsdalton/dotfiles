@@ -240,7 +240,6 @@ cmp.setup({
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'copilot'},
     { name = 'vsnip' },
     { name = 'path' },
     { name = 'buffer' },
@@ -266,19 +265,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-
-" copilot
-lua << EOF
-require("copilot").setup({
-  suggestion = { enabled = false },
-  panel = { enabled = false },
-})
-require("copilot_cmp").setup({
-  formatters = {
-    insert_text = require("copilot_cmp.format").remove_existing
-  }
-})
-EOF
 
 " move lines up and down
 nnoremap <C-j> :m .+1<CR>==
