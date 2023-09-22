@@ -178,7 +178,6 @@ alias gd="git diff"
 alias gp="git push"
 alias gpo="git push origin"
 alias gcb="git checkout -b"
-alias gcm="git checkout -b"
 alias gfom="git fetch origin"
 alias gcm="git checkout master"
 alias gpom="git pull -r origin master"
@@ -214,18 +213,22 @@ alias tmux='direnv exec / tmux'
 # version when entering a directory without .nvmrc
 #
 enter_directory() {
-if [[ $PWD == $PREV_PWD ]]; then
+  if [[ $PWD == $PREV_PWD ]]; then
     return
-fi
+  fi
 
-PREV_PWD=$PWD
-if [[ -f ".nvmrc" ]]; then
+  if [[ "$PWD" =~ "$PREV_PWD" && ! -f ".nvmrc" ]]; then
+    return
+  fi
+
+  PREV_PWD=$PWD
+  if [[ -f ".nvmrc" ]]; then
     nvm use
     NVM_DIRTY=true
-elif [[ $NVM_DIRTY = true ]]; then
+  elif [[ $NVM_DIRTY = true ]]; then
     nvm use default
     NVM_DIRTY=false
-fi
+  fi
 }
 
 export PROMPT_COMMAND=enter_directory
@@ -233,3 +236,5 @@ export PROMPT_COMMAND=enter_directory
 # dotenv
 eval "$(direnv hook bash)"
 export GPG_TTY=$(tty)
+
+source /Users/jim.dalton/.docker/init-bash.sh || true # Added by Docker Desktop
