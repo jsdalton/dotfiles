@@ -7,6 +7,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdcommenter'
 Plug 'neovim/nvim-lspconfig'
 
+" ctrl w m to zoom/unzoom
+Plug 'dhruvasagar/vim-zoom'
+
 " Completion stuff
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'

@@ -206,7 +206,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # kubectl for contentful
-export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-tools.yaml:~/.kube/cf-production.yaml:/Users/jsdalton/.kube/cf-convenience.yaml
+export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-internal.yaml:~/.kube/cf-production.yaml:/Users/jim.dalton/.kube/cf-convenience.yaml
 
 # ensure tmux uses direnv
 alias tmux='direnv exec / tmux'

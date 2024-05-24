@@ -1,0 +1,93 @@
+# /Users/jim.dalton/.config/tmuxinator/studio.yml
+
+name: studio
+root: ~/projects/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
+
+# Project hooks
+
+# Runs on project start, always
+# on_project_start: command
+
+# Run on project start, the first time
+# on_project_first_start: npm i
+
+# Run on project start, after the first time
+# on_project_restart: command
+
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+
+# Run on project stop
+# on_project_stop: command
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux. This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+windows:
+  - experience_builder:
+      root: ~/projects/experience-builder
+      layout: "693b,364x79,0,0{182x79,0,0,58,181x79,183,0[181x19,183,0{45x19,183,0,59,44x19,229,0,60,45x19,274,0,61,44x19,320,0,62},181x19,183,20{45x19,183,20,63,44x19,229,20,64,45x19,274,20,65,44x19,320,20,66},181x19,183,40,67,181x19,183,60,68]}"
+      panes:
+        - editor:
+          - nvim .
+        - packages/components:
+          - cd packages/components
+          - clear
+        - packages/core:
+          - cd packages/core
+          - clear
+        - packages/create-experience-builder:
+          - cd packages/create-experience-builder
+          - clear
+        - packages/experience-builder-sdk:
+          - cd packages/experience-builder-sdk
+          - clear
+        - packages/storybook-addon:
+          - cd packages/storybook-addon
+          - clear
+        - packages/test-app:
+          - cd packages/test-app
+          - clear
+        - packages/validators:
+          - cd packages/validators
+          - clear
+        - packages/visual-editor:
+          - cd packages/visual-editor
+          - clear
+        - tests:
+          - # noop
+        - git:
+          - # noop
+  - user_interface:
+      root: ~/projects/user_interface
+      layout: "60f7,364x79,0,0{182x79,0,0,124,181x79,183,0[181x19,183,0,125,181x19,183,20,130,181x39,183,40,126]}"
+      panes:
+        - editor:
+          - nvim .
+        - dev-staging:
+          - # noop
+        - test-watch:
+          - npm run test
+        - git:
+          - # noop

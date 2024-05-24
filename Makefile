@@ -5,7 +5,8 @@ RUBY_VERSION := 3.2.0
 
 update:	update-janus refresh
 
-upgrade: refresh-submodules update upgrade-brews upgrade-pip-requirements upgrade-gems upgrade-casks
+# removed pip-upgrade for now
+upgrade: refresh-submodules update upgrade-brews upgrade-gems upgrade-casks
 
 install: link-dotfiles refresh-submodules install-homebrew update-homebrew install-vim-plug install-brews install-pip-requirements install-janus update-janus install-powerline-fonts install-gems install-casks
 
@@ -93,7 +94,7 @@ update-homebrew:
 	@echo "Updating homebrew..."
 	@brew update
 	@brew cleanup
-	@brew doctor
+	@brew doctor || true
 
 upgrade-brews: update-homebrew
 	@echo "Upgrading homebrew..."
