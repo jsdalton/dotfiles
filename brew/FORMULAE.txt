@@ -165,7 +165,6 @@ protobuf 21.9_1
 pygments 2.13.0_1
 python@3.10 3.10.8
 python@3.11 3.11.0
-python@3.8 3.8.15
 python@3.9 3.9.15
 pyyaml 6.0_1
 qcachegrind 22.08.3

@@ -200,6 +200,8 @@ alias kgc="kubectl get cronjobs"
 alias kgns="kubectl get namespaces"
 alias keit="kubectl exec -it"
 
+alias ntoc="npm run test -- $(git diff --name-only origin/master | grep spec | xargs)"
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm

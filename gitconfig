@@ -6,6 +6,7 @@
 	editor = /opt/homebrew/bin/vim
 [push]
   default = simple
+  autoSetupRemote = true
 [credential]
 	helper = osxkeychain
 [rerere]
@@ -14,5 +15,23 @@
 	autosquash = true
 [commit]
 	gpgsign = true
+  verbose = true
 [pull]
 	rebase = true
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[init]
+  defaultBranch = main
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
