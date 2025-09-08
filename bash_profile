@@ -53,6 +53,8 @@ if [ -d ~/.sources ]; then
   done
 fi
 
+
+
 # Complete ssh config
 _complete_ssh_hosts ()
 {
@@ -160,12 +162,15 @@ function kube_console {
   kubectl get pods --context=$context --selector=app=gatekeeper | grep Running | awk '{ print $1 }' | tail -n 1 | xargs -o -I {} kubectl exec {} --context=$context -c gatekeeper -i -t -- rails console
 }
 
+
 function kube_sh {
   context='gatekeeper-001-euw1.quirely.com'
   [ -n "$1" ] && context=$1
   echo "Launching console on pod in $context cluster..."
   kubectl get pods --context=$context --selector=app=gatekeeper | grep Running | awk '{ print $1 }' | tail -n 1 | xargs -o -I {} kubectl exec {} --context=$context -c gatekeeper -i -t -- sh
 }
+
+
 
 # Fun aliases
 alias glog="git log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
@@ -186,6 +191,8 @@ alias gpomain="git pull -r origin main"
 alias gfom="git fetch origin master"
 alias gfomain="git fetch origin main"
 
+
+
 alias bunny="ssh -t -L 16666:127.0.0.1:16667 contentful_staging -- ssh -L 16667:127.0.0.1:15672"
 alias reset_preview!="git checkout preview && git fetch origin preview && git reset --hard origin/preview"
 alias vi=vim
@@ -200,12 +207,19 @@ alias kgc="kubectl get cronjobs"
 alias kgns="kubectl get namespaces"
 alias keit="kubectl exec -it"
 
-alias ntoc="npm run test -- $(git diff --name-only origin/master | grep spec | xargs)"
+# npm run test only files that have changes since master
+# ntoc <- defaults to origin/master
+# ntoc origin/main <- choose a different branch
+ntoc() {
+  local branch="${1:-origin/master}"
+  npm run test -- $(git diff --name-only "$branch" | grep spec | xargs)
+}
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 
 # kubectl for contentful
 export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-preview.yaml:~/.kube/cf-internal.yaml:~/.kube/cf-production.yaml:/Users/jim.dalton/.kube/cf-convenience.yaml
@@ -213,12 +227,17 @@ export KUBECONFIG=~/.kube/cf-auth-okta.yaml:~/.kube/cf-staging.yaml:~/.kube/cf-p
 # ensure tmux uses direnv
 alias tmux='direnv exec / tmux'
 
+
 # Run 'nvm use' automatically every time there's 
 # a .nvmrc file in the directory. Also, revert to default 
 # version when entering a directory without .nvmrc
 #
 enter_directory() {
   if [[ $PWD == $PREV_PWD ]]; then
+    return
+  fi
+
+  if [[ -z "${PREV_PWD}" ]]; then
     return
   fi
 
@@ -241,5 +260,7 @@ export PROMPT_COMMAND=enter_directory
 # dotenv
 eval "$(direnv hook bash)"
 export GPG_TTY=$(tty)
+
+
 
 source /Users/jim.dalton/.docker/init-bash.sh || true # Added by Docker Desktop

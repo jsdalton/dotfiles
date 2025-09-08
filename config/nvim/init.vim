@@ -17,14 +17,13 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
-" copilot - install with :Copilot auth
-Plug 'zbirenbaum/copilot.lua'
-Plug 'zbirenbaum/copilot-cmp'
-
 " fuzzy find
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
+
+" code companion AI 
+Plug 'olimorris/codecompanion.nvim'
 
 " asterisk search
 Plug 'junegunn/vim-slash'
@@ -107,17 +106,19 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Enable the following language servers
-local servers = { 'tsserver', 'solargraph' }
+local servers = { 'ts_ls', 'solargraph' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  vim.lsp.enable(lsp)
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
 
--- eslint stuff
+-- eslint lsp stuff
 local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  -- eslint formatter unix has to be installed or this won't work! crazy
+  lintCommand = 'eslint_d -f "$(npm root -g)/eslint-formatter-unix/index.js" --stdin --stdin-filename ${INPUT}',
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
@@ -134,7 +135,8 @@ local rubocop = {
   formatStdin = true
 }
 
-require 'lspconfig'.efm.setup {
+vim.lsp.enable('efm')
+vim.lsp.config('efm', {
   init_options = {documentFormatting = true},
   settings = {
     rootMarkers = {".git/", "Gemfile", ".rubocop.yml"},
@@ -160,7 +162,7 @@ require 'lspconfig'.efm.setup {
     "ruby",
     "rspec"
   }
-}
+})
 EOF
 
 " telescope stuff
@@ -246,6 +248,7 @@ cmp.setup({
     { name = 'vsnip' },
     { name = 'path' },
     { name = 'buffer' },
+    { name = "codecompanion" },
   },
 })
 
@@ -255,6 +258,9 @@ npairs.setup()
 npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
+
+-- nvim-autopairs with cmp stuff
 EOF
 
 lua << EOF
@@ -286,7 +292,6 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " ruby stuf
@@ -294,3 +299,46 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,
 
 " nerd commenter enable 
 let NERDSpaceDelims=1
+
+" codecompanion
+nnoremap <leader>cc :CodeCompanionChat Toggle<CR>
+nnoremap <leader>ca :CodeCompanionActions<CR>
+
+lua << EOF
+require("codecompanion").setup({
+   strategies = {
+    chat = {
+      adapter = "anthropic",
+    },
+    inline = {
+      adapter = "anthropic",
+    },
+    cmd = {
+      adapter = "anthropic",
+    }
+  },
+  display = {
+    chat = {
+      window = {
+        position = "right",
+      },
+    },
+  },
+  adapters = {
+    openai = function()
+      return require("codecompanion.adapters").extend("openai", {
+        env = {
+          api_key = 'cmd:op read op://Private/openai-neovim/credential --no-newline',
+        }
+      })
+    end,
+    anthropic = function()
+      return require("codecompanion.adapters").extend("anthropic", {
+        env = {
+          api_key = 'cmd:op read op://Employee/claude-neovim/credential --no-newline',
+        }
+      })
+    end
+  }
+})
+EOF
