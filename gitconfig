@@ -1,7 +1,7 @@
 [user]
 	name = Jim Dalton
 	email = jim.dalton@gmail.com
-	signingkey = E7939D6D7F11337CA0FB30D6688741C4831FEDBC
+	signingkey = BE7C217FA4CC2CF1
 [core]
 	editor = /opt/homebrew/bin/vim
 [push]

@@ -49,6 +49,7 @@ gnutls 3.7.8
 go 1.19.3
 go-jira 1.0.27
 gobject-introspection 1.74.0
+gpg
 graphite2 1.3.14
 graphviz 7.0.4
 gts 0.7.6_2

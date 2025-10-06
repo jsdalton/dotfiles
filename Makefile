@@ -14,7 +14,7 @@ freeze: freeze-brews freeze-pip-requirements freeze-casks
 
 refresh: refresh-submodules link-dotfiles
 
-link-dotfiles: vimrc gvimrc janus config tmux bash jrnl gitconfig
+link-dotfiles: vimrc gvimrc janus config tmux bash jrnl gitconfig gpgagentconf
 
 vimrc:
 	@echo "Linking .vimrc files..."
@@ -27,6 +27,11 @@ gvimrc:
 	@echo "Linking .gvimrc files..."
 	-@rm ~/.gvimrc.after || true
 	@ln -s $(current_dir)/gvimrc.after ~/.gvimrc.after
+
+gpgagentconf:
+	@echo "Linking gpg-agent.conf file..."
+	-@rm ~/.gnupg/gpg-agent.conf || true
+	@ln -s $(current_dir)/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 
 gitconfig:
 	@echo "Linking gitconfig..."

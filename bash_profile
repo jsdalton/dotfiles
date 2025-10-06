@@ -3,7 +3,7 @@
 PATH="/usr/local/bin:$(getconf PATH)"
 
 # Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/usr/local/bin/brew shellenv)"
 
 # Set path
 export PATH=$PATH:/opt/homebrew/bin
@@ -260,7 +260,3 @@ export PROMPT_COMMAND=enter_directory
 # dotenv
 eval "$(direnv hook bash)"
 export GPG_TTY=$(tty)
-
-
-
-source /Users/jim.dalton/.docker/init-bash.sh || true # Added by Docker Desktop
