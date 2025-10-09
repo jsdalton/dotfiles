@@ -6,7 +6,6 @@ PATH="/usr/local/bin:$(getconf PATH)"
 eval "$(/usr/local/bin/brew shellenv)"
 
 # Set path
-export PATH=$PATH:/opt/homebrew/bin
 export PATH=/usr/local/sbin:/usr/local/bin:~/bin:$PATH
 export PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk:$PATH
 
@@ -180,14 +179,14 @@ alias gs="git status"
 alias gc="git checkout"
 alias gf="git fetch"
 alias gd="git diff"
-alias gp="git push"
-alias gpo="git push origin"
+alias gpsh="git push"
+alias gpsho="git push origin"
 alias gcb="git checkout -b"
 alias gfom="git fetch origin"
 alias gcm="git checkout master"
 alias gcmain="git checkout main"
-alias gpom="git pull -r origin master"
-alias gpomain="git pull -r origin main"
+alias gplom="git pull -r origin master"
+alias gplomain="git pull -r origin main"
 alias gfom="git fetch origin master"
 alias gfomain="git fetch origin main"
 
@@ -217,8 +216,9 @@ ntoc() {
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+source ~/.nvm/nvm.sh
 
 
 # kubectl for contentful
