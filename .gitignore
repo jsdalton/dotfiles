@@ -3,3 +3,4 @@ src/
 Gemfile.lock
 config/hub
 config/github-copilot
+node_modules
