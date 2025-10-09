@@ -87,7 +87,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ff', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format({async=false})<CR>', opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -130,18 +130,30 @@ local rubocop = {
   lintCommand = "rubocop --format emacs --force-exclusion --stdin ${INPUT}",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
-  linkIgnoreExitCode = true,
-  formatCommand = "c rubocop -A -f quiet --stderr -s ${INPUT}",
+  lintIgnoreExitCode = true,
+  formatCommand = "rubocop -A -f quiet --stderr -s ${INPUT}",
   formatStdin = true
+}
+
+local json = {
+  formatCommand = "prettier --log-level=debug --stdin-filepath ${INPUT}",
+  formatStdin = true,
+  lintCommand = 'eslint_d -f "$(npm root -g)/eslint-formatter-unix/index.js" --stdin --stdin-filename ${INPUT}',
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  lintIgnoreExitCode = true,
 }
 
 vim.lsp.enable('efm')
 vim.lsp.config('efm', {
+  on_attach = on_attach,
   init_options = {documentFormatting = true},
   settings = {
     rootMarkers = {".git/", "Gemfile", ".rubocop.yml"},
     languages = {
       lua = { {formatCommand = "lua-format -i", formatStdin = true} },
+      json = {json},
+      jsonc = {json},
       javascript = {eslint},
       javascriptreact = {eslint},
       ["javascript.jsx"] = {eslint},
@@ -153,6 +165,9 @@ vim.lsp.config('efm', {
     }
   },
   filetypes = {
+    "lua",
+    "json",
+    "jsonc",
     "javascript",
     "javascriptreact",
     "javascript.jsx",
@@ -265,6 +280,7 @@ EOF
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
+  ignore_install = { "norg", "ipkg" },
   ensure_installed = "all",
   autotag = {
     enable = true,
