@@ -118,7 +118,7 @@ end
 -- eslint lsp stuff
 local eslint = {
   -- eslint formatter unix has to be installed or this won't work! crazy
-  lintCommand = 'eslint_d -f "$(npm root -g)/eslint-formatter-unix/index.js" --stdin --stdin-filename ${INPUT}',
+  lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
@@ -138,7 +138,7 @@ local rubocop = {
 local json = {
   formatCommand = "prettier --log-level=debug --stdin-filepath ${INPUT}",
   formatStdin = true,
-  lintCommand = 'eslint_d -f "$(npm root -g)/eslint-formatter-unix/index.js" --stdin --stdin-filename ${INPUT}',
+  lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
